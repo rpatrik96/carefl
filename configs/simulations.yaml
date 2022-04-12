@@ -14,7 +14,7 @@ data:
 # only relevant for flows
 flow:
   architecture: 'CL'
-  net_class: 'ARMLP'  # in {'MLP', 'ARMLP', 'MLP4'}.lower()
+  net_class: 'MLP'  # in {'MLP', 'ARMLP', 'MLP4'}.lower()
   nl: 2
   nh: 10
   batch_norm: false
