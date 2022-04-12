@@ -11,8 +11,8 @@ import torch.optim as optim
 from torch.distributions import Laplace, Uniform, TransformedDistribution, SigmoidTransform
 from torch.utils.data import DataLoader, Dataset
 
-from data.generate_synth_data import CustomSyntheticDatasetDensity
-from nflib import AffineCL, NormalizingFlowModel, MLP1layer, MAF, NSF_AR, ARMLP, MLP4
+
+from carefl.nflib import AffineCL, NormalizingFlowModel, MLP1layer, MAF, NSF_AR, ARMLP, MLP4
 
 
 class CAREFL:
@@ -324,6 +324,7 @@ class CAREFL:
             else:
                 data_test = np.copy(input[int(self.config.training.split * input.shape[0]):])
                 input = input[:int(self.config.training.split * input.shape[0])]
+            from data.generate_synth_data import CustomSyntheticDatasetDensity
             dset = CustomSyntheticDatasetDensity(input.astype(np.float32))
             test_dset = CustomSyntheticDatasetDensity(data_test.astype(np.float32))
             return dset, test_dset, dim

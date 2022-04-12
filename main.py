@@ -6,12 +6,12 @@ import os
 import torch
 import yaml
 
-from runners.cause_effect_pairs_runner import run_cause_effect_pairs
-from runners.counterfactual_trials import counterfactuals
-from runners.eeg_runner import run_eeg, plot_eeg
-from runners.fmri_runner import run_fmri
-from runners.intervention_trials import run_interventions, plot_interventions
-from runners.simulation_runner import run_simulations, plot_simulations
+
+
+
+
+
+
 
 
 def parse_input():
@@ -125,6 +125,7 @@ def main():
 
     # causal discovery
     if args.simulation:
+        from carefl.runners.simulation_runner import run_simulations, plot_simulations
         # run algorithm on simulated data
         # and save the results as pickle files which can be used later to plot Fig 1.
         args.doc = os.path.join('simulations', config.data.causal_mech)
@@ -139,6 +140,7 @@ def main():
             plot_simulations(args, config)
 
     if args.pairs:
+        from carefl.runners.cause_effect_pairs_runner import run_cause_effect_pairs
         # Run proposed method on CauseEffectPair dataset
         # The values for baseline methods were taken from their respective papers.
         args.doc = 'pairs'
@@ -147,6 +149,7 @@ def main():
         run_cause_effect_pairs(args, config)
 
     if args.eeg:
+        from carefl.runners.eeg_runner import run_eeg, plot_eeg
         args.doc = 'eeg'
         make_and_set_dirs(args, config)
         config.training.seed = args.seed
@@ -158,6 +161,7 @@ def main():
 
     # interventiuons
     if args.intervention:
+        from carefl.runners.intervention_trials import run_interventions, plot_interventions
         # Run proposed method to perform interventions on the toy example described in the manuscript
         args.doc = 'interventions'
         make_and_set_dirs(args, config)
@@ -168,6 +172,7 @@ def main():
             plot_interventions(args, config)
 
     if args.fmri:
+        from carefl.runners.fmri_runner import run_fmri
         # Run proposed method to perform counterfactuals on the toy example described in the manuscript
         args.doc = 'fmri'
         make_and_set_dirs(args, config)
@@ -177,6 +182,7 @@ def main():
     # counterfactuals
     if args.counterfactual:
         # Run proposed method to perform counterfactuals on the toy example described in the manuscript
+        from carefl.runners.counterfactual_trials import counterfactuals
         args.doc = 'counterfactuals'
         make_and_set_dirs(args, config)
         print('running counterfactuals on toy example')

@@ -8,7 +8,7 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import scale
 
-from nflib.nets import MLP1layer, MLP4
+from carefl.nflib.nets import MLP1layer, MLP4
 
 
 def rbf_dot2(p1, p2, deg):

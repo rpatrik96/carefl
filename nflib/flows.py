@@ -40,7 +40,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from nflib.nets import LeafParam, MLP4
+from carefl.nflib.nets import LeafParam, MLP4
 
 
 class AffineConstantFlow(nn.Module):
